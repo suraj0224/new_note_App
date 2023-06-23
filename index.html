@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #textnote{
+            width: 30vw;
+            height: 30vh;
+            /* margin: 20px 100px; */
+            font-size: 22px;
+            text-align: center;
+        }
+        #btn1{
+height: 30px;
+width: 80px;
+        }
+        #outerbox{
+            height: 30vh;
+            width: 50vw;
+            border: solid 2px black;
+        }
+        #noteno1{
+            height: 40px;
+            width: 100px;
+            border: 2px solid black;
+            margin-bottom: 20px;
+            display: flex;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Learn by doing</h1>
+   <p>Write Your notes and Press Save</p>
+
+   <div id="noteno1">
+    <p class="dis">Note :&nbsp; </p>
+<p id="count" class="dis"></p>
+</div>
+
+   <input type="text" id="textnote">
+   <button onclick="save()" id="btn1">Save</button>
+   <button onclick="reload()" id="btn2">reload</button>
+   <button onclick="clear1()" id="btn3">Clear</button>
+   <hr>
+   <div id="outerbox">
+    <!-- <div id="line1"></div>
+    <div id="line2"></div>
+    <div id="line3"></div>
+    <div id="line4"></div>
+    <div id="line5"></div> -->
+   </div>
+
+
+
+<script>
+    
+    const save=()=>{
+        
+        let note = document.getElementById("textnote");
+        note=note.value;
+       // console.log(note);
+        let count = document.getElementById("count");
+        
+        // console.log(i, typeof i);
+        let i = 1;
+        //i=Number.parseInt(i);
+        // console.log(num, typeof num);
+        ++i;
+       
+      //  console.log(i);
+
+
+        if(localStorage.getItem(--i)==null){
+           
+            console.log("new key");
+            localStorage.setItem(i,note);
+        console.log(i,note);
+
+        let line1 = document.createElement("div");
+        // line1.className="text1";
+        document.getElementById("outerbox").appendChild(line1)
+
+         note1=localStorage.getItem(i)
+        line1.innerHTML="Note:"+i +" -  " + note1;
+        count.textContent=i;
+           
+        }
+        else{
+
+//console.log("Key Exists");
+//alert("this key is already present")
+let i= localStorage.length +1;
+localStorage.setItem(i,note);
+        console.log(i,note);
+
+        let line1 = document.createElement("div");
+        // line1.className="text1";
+        document.getElementById("outerbox").appendChild(line1)
+
+         note1=localStorage.getItem(i)
+        line1.innerHTML="Note:"+i +" -  " + note1;
+        count.textContent=i;
+           
+
+
+        }
+
+
+       
+
+}
+
+
+
+const reload=()=>{
+
+   let len= localStorage.length;
+  //console.log(len);
+
+  let box = document.getElementById("outerbox");
+
+   // let o = document.getElementsByClassName("text1");
+    
+   // console.log("its working ");
+   while (box.firstElementChild) {
+          box.removeChild(box.firstChild);
+        }
+
+
+for( let a=1; a<=len;a++){
+    let line2 = document.createElement("div");
+       // line2.className="text1";
+        document.getElementById("outerbox").appendChild(line2);
+
+         note2=localStorage.getItem(a)
+        line2.innerHTML="Note:"+a +" - "+note2;
+}
+// document.getElementById("btn2").disabled=true;
+
+}
+
+
+
+
+const clear1=()=>{
+//let clear =document.getElementById("btn3");
+localStorage.clear();
+let box = document.getElementById("outerbox");
+
+   // let o = document.getElementsByClassName("text1");
+    
+   // console.log("its working ");
+   while (box.firstElementChild) {
+          box.removeChild(box.firstChild);
+        }
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script>
+        let url = "https://api.dictionaryapi.dev/api/v2/entries/en/rage"
+
+        let request =   fetch(url)
+        request.then((rec)=>{
+            console.log(rec);
+           return rec.text();
+       // return rec.json();  
+        }
+        ).then((rec2)=>{
+            console.log(rec2);
+let rec3 =JSON.parse(rec2);
+            console.log(rec3);
+        }
+        )
+
+    </script> -->
+</body>
+</html>
